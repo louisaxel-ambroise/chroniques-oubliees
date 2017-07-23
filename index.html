@@ -14,7 +14,7 @@
 			<button id="menuToggle" class="right btn-right btn-menu btn" onclick="toggleMenu()">+</button>
 		</header>
 		<div id="main-content">
-			<h2 class="watermark center" al-hide="players.length>0" onclick="popupPlayerModal()">Cliquer ici pour ajouter un perso</h2>
+			<h2 class="watermark center" al-hide="players.length>0" onclick="openModal('player-add-modal', 'playerName-input'); return false;">Cliquer ici pour ajouter un perso</h2>
 			<div class="player-container" al-repeat="player in players">
 				<div class="full-padding-5 player-name">
 					<a href="#" class="right btn-delete center" al-click="prepareId($index)" onclick="openModal('delete-player-modal', 'userName-delete-input')">x</a>
@@ -35,10 +35,17 @@
 				</div>
 				<div class="full-padding-5">
 					<h4>Armes:</h4>
-					<div class="player-weapon" al-repeat="weapon in player.weapons">
-						<div class="third bordered-right">{{weapon.name}}</div>
-						<div class="third bordered-right">1d20 + ??</div>
-						<div class="third bordered-right">Kesskecé?</div>
+					<table>
+						<thead><tr><th>Desc.</th><th class="left-bordered">Attaque</th><th class="left-bordered">DM</th><th></th></tr></thead>
+						<tr al-repeat="weapon in player.weapons">
+							<td><input type="text" al-value="weapon.name" /></td>
+							<td class="left-bordered">1d20 + <input type="number" al-value="weapon.attaque" min="-9" max="9" /></td>
+							<td class="left-bordered">1d20 +<input type="number" al-value="weapon.dm" min="-9" max="9" /></td>
+							<td><a href="#" class="center btn-delete" al-click="deleteWeapon(player, $index);">x</a></td>
+						</tr>
+					</table>
+					<div class="full-padding-5">
+						<a href="#" class="add-weapon" al-click="addWeapon(player)">ajouter</a>
 					</div>
 				</div>
         		</div>
@@ -77,8 +84,7 @@
 		</div>
 		<div id="delete-player-modal" class="modal-container">
 			<div class="modal-form">
-				<p class="warning">Action irréversible.</p>
-				<p>Entrez le nom pour confirmer:</p>
+				<p class="warning">Action irréversible.<br />Entrez le nom pour confirmer:</p>
 				<label for="fileName-input">Nom:</label>
 				<input type="text" al-value="playerName" placeholder="Nom" id="userName-delete-input" />
 				<div class="form-buttons">

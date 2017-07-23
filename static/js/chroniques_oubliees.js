@@ -51,6 +51,14 @@ function communaute($scope){
     $scope.playerName = "";
   }
 
+  $scope.addWeapon = function(player){
+     player.weapons.push({ desc:"", mod:0, damage:0, damage_mod:0});
+  }
+
+  $scope.deleteWeapon = function(player, index){
+    player.weapons.splice(index, 1);
+  }
+
   $scope.loadFile = function(){
     var file = document.getElementById('fileName-input').files[0];
 

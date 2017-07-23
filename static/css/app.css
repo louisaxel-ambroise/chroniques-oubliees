@@ -94,13 +94,12 @@ label{
 }
 input{
 	display:inline-block;
-	height:25px;
-	line-height:25px;
+	height:24px;
+	line-height:24px;
 	border:1px solid #ccc;
 	padding:0 10px;
 	font-weight:bold;
 	width:155px;
-	margin-bottom:5px;
 }
 select{
 	height:25px;
@@ -111,6 +110,7 @@ select{
 
 /* PLAYER CONTAINER */
 .player-container{
+	vertical-align:top;
 	box-shadow:0 0 5px #888;
 	margin:10px;
 	background:rgba(254,254,254, 0.5);
@@ -140,12 +140,12 @@ select{
 	color:#fff;
 	background:red;
 	height:20px;
+	line-height:20px !important;
 	width:20px;
 	border-radius:3px;
 	position:relative;
 	display:inline-block;
 	font-weight:bold;
-	top:calc(50% - 10px);
 }
 .player-container h3, .player-container h4{
 	height:30px;
@@ -192,21 +192,36 @@ select{
 	text-transform: uppercase;
 	text-align:right;
 	font-weight:bold;
+	margin-top:4px;
+	height:24px;
+	line-height:24px;
 }
 .player-container .carac .val{
 	display:inline-block;
-	height:27px;
-	line-height:27px;
+	height:24px;
+	line-height:24px;
 	margin-top:4px;
 	max-width:40%;
 	width:60px;
 	margin-left:8%;
+	background: transparent;	
 }
-.player-container .carac .val-large{
-	display:block;
-	width:100%;
-	text-transform: uppercase;
-	font-weight:bold;
+.player-container table{
+	width:calc(100% - 10px);
+	margin:5px;
+	border-collapse:collapse;
+	border:1px solid #999;
+}
+
+.player-container .add-weapon{ color:#020202; font-variant:small-caps; }
+
+.player-container table th, .player-container table td{ font-size:90%; }
+.player-container table tr{ height:30px; line-height:30px; margin:20px 0; border-bottom:1px solid #aaa; }
+.player-container td input{ width:100px; }
+.player-container .left-bordered { border-left:1px solid #aaa; }
+.player-container td input[type="number"]{
+	width:35px;
+	display:inline-block;
 }
 
 /* MODAL */
@@ -249,6 +264,14 @@ select{
 	height:35px;
 	line-height:35px;
 	text-transform:uppercase;
+}
+.modal-form .warning{
+	margin:5px auto 20px auto;
+	border:1px solid #c43700;
+	background:#ffdacb;
+	width:calc(90% - 20px);
+	padding:5px;
+	border-radius:8px;
 }
 .modal-form .btn-submit{
 	background-color:green;
