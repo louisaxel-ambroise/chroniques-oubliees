@@ -44,7 +44,7 @@ function communaute($scope){
   }
 
   $scope.deleteUser = function(){
-    if($scope.selectedId && $scope.playerName && $scope.playerName.toLowerCase() === $scope.players[$scope.selectedId].name.toLowerCase()){
+    if($scope.playerName && $scope.playerName.toLowerCase() === $scope.players[$scope.selectedId].name.toLowerCase()){
       $scope.players.splice($scope.selectedId,1);
     }
     $scope.selectedId = undefined;
@@ -105,6 +105,19 @@ function communaute($scope){
     {name:"Prêtre"},
     {name:"Rôdeur"},
     {name:"Voleur"}
+  ];
+  
+  $scope.damage_de = [
+    {value:"1d4"},
+    {value:"1d6"},
+    {value:"1d8"},
+    {value:"1d12"},
+    {value:"1d20"},
+    {value:"2d4"},
+    {value:"2d6"},
+    {value:"2d8"},
+    {value:"2d12"},
+    {value:"2d20"}
   ];
 };
 

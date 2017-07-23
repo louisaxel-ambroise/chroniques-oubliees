@@ -40,7 +40,10 @@
 						<tr al-repeat="weapon in player.weapons">
 							<td><input type="text" al-value="weapon.name" /></td>
 							<td class="left-bordered">1d20 + <input type="number" al-value="weapon.attaque" min="-9" max="9" /></td>
-							<td class="left-bordered">1d20 +<input type="number" al-value="weapon.damage" min="-9" max="9" /></td>
+							<td class="left-bordered">
+								<select al-value="weapon.damage_de">
+									<option  al-repeat="damage in damage_de" value="{{damage.value}}">{{damage.value}}</option>
+								</select>+<input type="number" al-value="weapon.damage" min="-9" max="9" /></td>
 							<td><a href="#" class="center btn-delete" al-click="deleteWeapon(player, $index);">x</a></td>
 						</tr>
 					</table>

@@ -221,9 +221,10 @@ select{
 .player-container td input{ width:100px; }
 .player-container .left-bordered { border-left:1px solid #aaa; }
 .player-container td input[type="number"]{
-	width:35px;
+	width:28px;
 	display:inline-block;
 }
+.player-container td select{ width:75px; display:inline-block; }
 
 /* MODAL */
 .modal-container{
