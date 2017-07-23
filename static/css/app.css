@@ -39,7 +39,7 @@ header h1{
 	font-family:"Chronicles", sans-serif;
 	letter-spacing:2px;
 }
-.right{ position:relative; float:right; right:10px;  }
+.right{ position:relative; float:right; right:10px; top:calc(50% - 10px)  }
 .btn{
 	display:inline-block;
 	width:25px;
@@ -137,10 +137,11 @@ select{
 .player-container .player-name{ height:28px; }
 .player-container a.btn-delete{
 	text-decoration:none;
+	font-size:13px;
 	color:#fff;
 	background:red;
 	height:20px;
-	line-height:20px !important;
+	line-height:19px !important;
 	width:20px;
 	border-radius:3px;
 	position:relative;

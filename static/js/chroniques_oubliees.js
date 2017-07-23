@@ -52,7 +52,7 @@ function communaute($scope){
   }
 
   $scope.addWeapon = function(player){
-     player.weapons.push({ desc:"", mod:0, damage:0, damage_mod:0});
+     player.weapons.push({ desc:"", attaque:0, damage:0});
   }
 
   $scope.deleteWeapon = function(player, index){
