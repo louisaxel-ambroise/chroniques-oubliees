@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Chroniques Oubliées</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./static/css/app.css" media="screen" />
+		<script type="text/javascript" src="./static/js/alight.js"></script>
+		<script type="text/javascript" src="./static/js/chroniques_oubliees.js"></script>
+	</head>
+	<body al-app="communaute">
+		<header>
+			<h1>Chroniques Oubliées</h1>
+			<button id="menuToggle" class="btn-right btn-menu btn" onclick="toggleMenu()">+</button>
+		</header>
+		<div id="main-content">
+			<h2 class="watermark" al-hide="players.length>0" onclick="popupPlayerModal()">Appuyer ici pour ajouter un perso</h2>
+			<div class="player-container" al-repeat="player in players">
+				<h3>{{player.name}}</h3>
+				<div class="full-padding-5 player-description">{{player.race}} ({{player.sex}}) - {{player.profil}}</div>
+				<div class="col-2-5th-padding-5">
+					<div class="carac" al-repeat="carac in player.caracteristics">
+						<div class="def">{{carac.key}}</div>
+						<input type="number" class="val" al-value="carac.value" min="-9" max="9" />
+					</div>
+				</div>
+				<div class="col-3-5th-padding-5">
+					<div class="carac" al-repeat="carac in player.combat">
+						<div class="def">{{carac.key}}</div>
+						<input type="number" class="val" al-value="carac.value" min="0" max="50" />
+					</div>
+				</div>
+				<div class="full-padding-5">
+					<h3>Armes:</h3>
+					<div class="player-weapon" al-repeat="weapon in player.weapons">
+						{{weapon.name}}
+					</div>
+				</div>
+        		</div>
+		</div>
+		<div id="app-menu">
+			<ul>
+				<li><a href="#" onclick="popupPlayerModal(); return false;">Ajouter perso</a></li>
+				<li><a href="#" al-click="export();" onclick="closeMenu()">Sauvegarder</a></li>
+				<li><a href="#" onclick="openSavedFile()">Charger</a></li>
+			</ul>
+		</div>
+		<div id="player-add-modal" class="modal-container">
+			<div class="modal-form">
+				<label for="playerName-input">Nom du joueur:</label>
+				<input type="text" al-value="playerName" placeholder="Nom" id="playerName-input" />
+				<label for="playerRace">Race:</label>
+				<select al-value="playerRace" id="playerRace-input">
+					<option value="Demi-elfe">Demi-elfe</option>
+					<option value="Demi-orque">Demi-orque</option>
+					<option value="Elfe-haut">Elfe-haut</option>
+					<option value="Elfe-sylvain">Elfe-sylvain</option>
+					<option value="Gnome">Gnome</option>
+					<option value="Halfelin">Halfelin</option>
+					<option value="Humain">Humain</option>
+					<option value="Nain">Nain</option>
+				</select>
+				<label for="playerProfil-input">Profil:</label>
+				<select al-value="playerProfil" id="playerProfil-input">
+					<option value="Arquebusier">Arquebusier</option>
+					<option value="Barbare">Barbare</option>
+					<option value="Barde">Barde</option>
+					<option value="Chevalier">Chevalier</option>
+					<option value="Druide">Druide</option>
+					<option value="Ensorceleur">Ensorceleur</option>
+					<option value="Forgesort">Forgesort</option>
+					<option value="Guerrier">Guerrier</option>
+					<option value="Magicien">Magicien</option>
+					<option value="Moine">Moine</option>
+					<option value="Nécromancien">Nécromancien</option>
+					<option value="Prêtre">Prêtre</option>
+					<option value="Rôdeur">Rôdeur</option>
+					<option value="Voleur">Voleur</option>
+				</select>
+				<label for="playerSex-input">Sexe:</label>
+				<select al-value="playerSex" id="playerSex-input">
+					<option value="M">Masculin</option>
+					<option value="F">Féminin</option>
+				</select>
+				<div class="form-buttons">
+					<button class="btn-primary btn-submit" al-click="addPlayer()" onclick="closeModal();">Créer</button>
+					<button class="btn-primary btn-cancel" al-click="playerName = ''" onclick="closeModal();">Annuler</button>
+				</div>
+			</div>
+		</div>
+		<div id="open-file-modal" class="modal-container">
+			<div class="modal-form">
+				<label for="fileName-input">Fichier à charger:</label>
+				<input type="file" al-value="fileName" placeholder="Aucun fichier sélectionné" id="fileName-input" al-change="loadFile()" onchange="closeModal();" />
+				<div class="form-buttons">
+					<button class="btn-primary btn-submit" al-click="loadFile()" onclick="closeModal();">Charger</button>
+					<button class="btn-primary btn-cancel" al-click="fileName = ''" onclick="closeModal();">Annuler</button>
+				</div>
+			</div>
+		</div>
+		<a id="downloadLink" style="display:none;"></a>
+	</body>
+	<script type="text/javascript">
+		function toggleMenu(){
+			var value = window.getComputedStyle(document.getElementById("app-menu")).getPropertyValue("display");
+			if(value === "none"){
+				document.getElementById("app-menu").style.display = "block";
+				document.getElementById("menuToggle").classList.remove("btn-menu");
+				document.getElementById("menuToggle").classList.add("btn-menu-opened");
+			}
+			else{
+				document.getElementById("app-menu").style.display = "none";
+				document.getElementById("menuToggle").classList.remove("btn-menu-opened");
+				document.getElementById("menuToggle").classList.add("btn-menu");
+			}
+		}
+
+		function closeMenu(){
+			document.getElementById("app-menu").style.display = "none";
+			document.getElementById("menuToggle").classList.remove("btn-menu-opened");
+			document.getElementById("menuToggle").classList.add("btn-menu");
+		}
+
+		function popupPlayerModal(){
+			closeMenu();
+			document.getElementById("player-add-modal").style.display = "block";
+			document.getElementById("playerName-input").focus();
+		}
+
+		function openSavedFile(){
+			closeMenu();
+			document.getElementById("open-file-modal").style.display = "block";
+			document.getElementById("fileName-input").click();
+		}
+
+		function closeModal(){
+			var modals = document.getElementsByClassName("modal-container");
+			for(var i=0 ; i<modals.length ; i++) modals[i].style.display = "none";
+		}
+	</script>
+</html>
