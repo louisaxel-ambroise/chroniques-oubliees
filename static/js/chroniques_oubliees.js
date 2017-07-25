@@ -6,6 +6,9 @@ function communaute($scope){
 			race: $scope.playerRace, 
 			sex: $scope.playerSex, 
 			profil: $scope.playerProfil,
+			age: $scope.playerAge,
+			weight: $scope.playerWeight,
+			height: $scope.playerHeight,
 			caracteristics: [
 				{ key:"for", value:0 },
 				{ key:"dex", value:0 },
@@ -14,8 +17,8 @@ function communaute($scope){
 				{ key:"cha", value:0 },
 				{ key:"int", value:0 }
 			],
+			init:0,
 			combat:[
-				{key:"init", value:0 },
 				{key:"contact", value:0 },
 				{key:"distance", value:0 },
 				{key:"magique", value:0 },
@@ -25,6 +28,9 @@ function communaute($scope){
 		};
 		$scope.players.push(player);
 		$scope.playerName = "";
+		$scope.playerAge = 1;
+		$scope.playerWeight = 1;
+		$scope.playerHeight = 50;
 	}
   };
 
@@ -52,7 +58,7 @@ function communaute($scope){
   }
 
   $scope.addWeapon = function(player){
-     player.weapons.push({ desc:"", attaque:0, damage:0});
+     player.weapons.push({ desc:"", attaque:0, damage:0, damage_de:0});
   }
 
   $scope.deleteWeapon = function(player, index){
@@ -79,6 +85,9 @@ function communaute($scope){
   $scope.playerRace = "";
   $scope.playerSex = "";
   $scope.playerProfil = "";
+  $scope.playerAge = 1;
+  $scope.playerWeight = 1;
+  $scope.playerHeight = 50;
 
   $scope.races = [
     {name:"Demi-elfe"},
@@ -108,16 +117,16 @@ function communaute($scope){
   ];
   
   $scope.damage_de = [
-    {value:"1d4"},
-    {value:"1d6"},
-    {value:"1d8"},
-    {value:"1d12"},
-    {value:"1d20"},
-    {value:"2d4"},
-    {value:"2d6"},
-    {value:"2d8"},
-    {value:"2d12"},
-    {value:"2d20"}
+    {id:1, value:"1d4"},
+    {id:2, value:"1d6"},
+    {id:3, value:"1d8"},
+    {id:4, value:"1d12"},
+    {id:5, value:"1d20"},
+    {id:6, value:"2d4"},
+    {id:7, value:"2d6"},
+    {id:8, value:"2d8"},
+    {id:9, value:"2d12"},
+    {id:10, value:"2d20"}
   ];
 };
 
@@ -157,3 +166,10 @@ function deletePlayer(index){
 	document.getElementById("delete-player-modal").style.display = "block";
 	document.getElementById("userName-delete-input").focus();
 }
+
+/* Extend alight - add directive for selected option value */
+alight.directives.al.selected = function(element, name, scope, env) {  // DOM-element, name - value of attribute, Scope, env - access to aLight processor
+    if(scope.$eval(scope.$evalText(name))){
+	element.selected = true;
+    }
+};

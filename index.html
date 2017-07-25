@@ -21,29 +21,33 @@
 					<a href="#" class="right btn-delete center" al-click="prepareId($index)" onclick="openModal('delete-player-modal', 'userName-delete-input')">x</a>
 					<h3 class="center">{{player.name}}</h3>
 				</div>
-				<div class="full-padding-5 player-description">{{player.race}} ({{player.sex}}) &bull; {{player.profil}}</div>
-				<div class="col-2-5th-padding-5">
+				<div class="full-padding-5 player-description">{{player.race}} ({{player.sex}}) {{player.profil}} <br />{{player.age}} ans &bull; {{player.weight}} kg &bull; {{player.height}} cm</div>
+				<div class="column">
 					<div class="carac" al-repeat="carac in player.caracteristics">
 						<div class="def">{{carac.key}}</div>
 						<input type="number" class="val" al-value="carac.value" min="-9" max="9" />
 					</div>
 				</div>
-				<div class="col-3-5th-padding-5">
+				<div class="column">
+					<div class="carac">
+						<div class="def">init</div>
+						<input type="number" class="val" al-value="player.init" min="0" max="50" />
+					</div>
 					<div class="carac" al-repeat="carac in player.combat">
 						<div class="def">{{carac.key}}</div>
-						<input type="number" class="val" al-value="carac.value" min="0" max="50" />
+						<input type="number" class="val" al-value="carac.value" min="-9" max="9" />
 					</div>
 				</div>
 				<div class="full-padding-5">
 					<h4>Armes:</h4>
 					<table>
-						<thead><tr><th>Desc.</th><th class="left-bordered">Attaque</th><th class="left-bordered">DM</th><th></th></tr></thead>
+						<thead><tr><th>Desc.</th><th class="left-bordered">Attaque</th><th class="left-bordered">DM</th><th>&nbsp;</th></tr></thead>
 						<tr al-repeat="weapon in player.weapons">
 							<td><input type="text" al-value="weapon.name" /></td>
 							<td class="left-bordered">1d20 + <input type="number" al-value="weapon.attaque" min="-9" max="9" /></td>
 							<td class="left-bordered">
-								<select al-value="weapon.damage_de">
-									<option  al-repeat="damage in damage_de" value="{{damage.value}}">{{damage.value}}</option>
+								<select al-value="weapon.damage_de" >
+									<option  al-repeat="damage in damage_de" value="{{damage.id}}" al-selected="{{damage.id}} == {{weapon.damage_de}}">{{damage.value}}</option>
 								</select>+<input type="number" al-value="weapon.damage" min="-9" max="9" /></td>
 							<td><a href="#" class="center btn-delete" al-click="deleteWeapon(player, $index);">x</a></td>
 						</tr>
@@ -80,6 +84,12 @@
 					<option value="M">Masculin</option>
 					<option value="F">Féminin</option>
 				</select>
+				<label for="playerAge-input">Age:</label>
+				<input type="number" al-value="playerAge" value="1"  min="1" max="500" />
+				<label for="playerPoids-input">Poids (kg):</label>
+				<input type="number" al-value="playerWeight" value="1"  min="1" max="500" />
+				<label for="playerTaille-input">Taille (cm):</label>
+				<input type="number" al-value="playerHeight" value="50"  min="50" max="500" />
 				<div class="form-buttons">
 					<button class="btn-primary btn-submit" al-click="addPlayer()" onclick="closeModal();">Créer</button>
 					<button class="btn-primary btn-cancel" al-click="playerName = ''" onclick="closeModal();">Annuler</button>

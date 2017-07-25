@@ -124,6 +124,7 @@ input{
 	font-weight:bold;
 	width:155px;
 }
+input[type=number]{ padding-right:0 !important; padding-left:2px !important; }
 select{
 	height:25px;
 	line-height:25px;
@@ -140,6 +141,8 @@ select{
 	min-height:calc(100% - 22px);
 	height:auto;
 	width:calc(33% - 20px);
+	max-width:450px;
+        min-width: 375px;
 	position: relative;
 	border:1px solid #AAA;
 	border-radius:8px;
@@ -188,19 +191,14 @@ select{
 }
 .player-container .player-description{
 	border-bottom:1px solid #bbb;
-	font-variant:small-caps;
+	text-transform: uppercase;
+	font-size: 80%;	
 }
 
-.player-container .col-2-5th-padding-5{
+.player-container .column{
 	display:inline-block;
 	vertical-align:top;
-	width:calc(39% - 10px);
-	padding:5px;
-}
-.player-container .col-3-5th-padding-5{
-	display:inline-block;
-	vertical-align:top;
-	width:calc(59% - 10px);
+	width:calc(49% - 10px);
 	padding:5px;
 }
 .player-container .carac{
@@ -211,7 +209,7 @@ select{
 }
 .player-container .carac .def{
 	display:inline-block;
-	width:40%;
+	width:50%;
 	font-size:90%;
 	text-transform: uppercase;
 	text-align:right;
@@ -226,7 +224,7 @@ select{
 	line-height:24px;
 	margin-top:4px;
 	max-width:40%;
-	width:60px;
+	width:45px;
 	margin-left:8%;
 	background: transparent;	
 }
@@ -243,20 +241,17 @@ select{
 .player-container table tr{ height:30px; line-height:30px; margin:20px 0; border-bottom:1px solid #aaa; }
 .player-container td input{ width:100px; }
 .player-container .left-bordered { border-left:1px solid #aaa; }
-.player-container td input[type="number"]{
-	width:28px;
-	display:inline-block;
-}
+.player-container td input[type="number"]{ width:30px; display:inline-block; }
 .player-container td select{ width:75px; display:inline-block; }
 
 /* MODAL */
 .modal-container{
 	display:none;
 	position:fixed;
-	top:50px;
+	top:43px;
 	left:0;
 	width:100%;
-	height:calc(100% - 51px);
+	height:calc(100% - 43px);
 	background-color:rgb(0,0,0);
 	background-color:rgba(0,0,0,0.4);
 }
@@ -271,16 +266,18 @@ select{
 .modal-form
 {
 	margin:auto;
-	top:calc(50% - 115px);
-	height:180px;
+	height:auto;
 	background-color:#eee;
 	position:relative;
+	top:50px;
 	padding:0;
-	outline:0;
 	width:350px;
 	padding:15px;
 	border:2px solid #444;
 	border-radius:10px;
+}
+.modal-form input{
+	margin-bottom:5px;
 }
 
 .modal-form .btn-primary{
@@ -311,7 +308,7 @@ select{
 
 .modal-form .form-buttons{
 	margin-top:15px;
-	float:right;
+	text-align:right;
 }
 
 /* APP MENU */
