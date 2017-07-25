@@ -21,7 +21,7 @@
 					<a href="#" class="right btn-delete center" al-click="prepareId($index)" onclick="openModal('delete-player-modal', 'userName-delete-input')">x</a>
 					<h3 class="center">{{player.name}}</h3>
 				</div>
-				<div class="full-padding-5 player-description">{{player.race}} ({{player.sex}}) {{player.profil}} <br />{{player.age}} ans &bull; {{player.weight}} kg &bull; {{player.height}} cm</div>
+				<div class="full-padding-5 player-description">{{player.race}} ({{player.sex}}) {{player.profil}} - {{player.age}} ans &bull; {{player.weight}} kg &bull; {{player.height}} cm</div>
 				<div class="column">
 					<div class="carac" al-repeat="carac in player.caracteristics">
 						<div class="def">{{carac.key}}</div>
