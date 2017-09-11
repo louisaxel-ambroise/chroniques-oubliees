@@ -65,6 +65,15 @@ function communaute($scope){
     player.weapons.splice(index, 1);
   }
 
+  $scope.addNote = function(){
+    $scope.notes.push($scope.noteContent);
+    $scope.noteContent = "";
+  }
+  
+  $scope.deleteNote = function(noteIndex){
+    $scope.notes.splice(noteIndex,1);
+  }
+
   $scope.loadFile = function(){
     var file = document.getElementById('fileName-input').files[0];
 
@@ -88,6 +97,10 @@ function communaute($scope){
   $scope.playerAge = 1;
   $scope.playerWeight = 1;
   $scope.playerHeight = 50;
+  
+  // Add possibility for DM to add notes
+  $scope.notes = [ ];
+  $scope.noteContent = "";
 
   $scope.races = [
     {name:"Demi-elfe"},

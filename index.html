@@ -58,13 +58,17 @@
 				</div>
         		</div>
 		</div>
+		<!-- Top-Left menu -->
 		<div id="app-menu">
 			<ul>
+				<li><a href="#" onclick="openModal('notes-modal'); return false;">Gérer les notes</a></li>
 				<li><a href="#" onclick="openModal('player-add-modal', 'playerName-input'); return false;">Ajouter perso</a></li>
 				<li><a href="#" al-click="export();" onclick="closeMenu()">Sauvegarder</a></li>
 				<li><a href="#" onclick="openModal('open-file-modal', 'fileName-input')">Charger</a></li>
 			</ul>
 		</div>
+
+		<!-- Modal windows - Hidden by default -->
 		<div id="player-add-modal" class="modal-container">
 			<div class="modal-form">
 				<label for="playerName-input">Nom du perso:</label>
@@ -115,6 +119,21 @@
 					<button class="btn-primary btn-submit" al-click="loadFile()" onclick="closeModal();">Charger</button>
 					<button class="btn-primary btn-cancel" al-click="fileName = ''" onclick="closeModal();">Annuler</button>
 				</div>
+			</div>
+		</div>
+		<div id="notes-modal" class="modal-container">
+			<div class="modal-form">
+				<div class="full-padding-5 player-name">
+					<a href="#" class="right btn-delete center" onclick="closeModal(); return false;">x</a>
+					<h3 class="center">Notes du DM</h3>
+				</div>
+				<div class="notes">
+					<p class="dm-notes" al-repeat="note in notes">
+						{{note}} <a href="#" al-click="deleteNote($index)">x</a>
+					</p>	
+				</div>
+				<textarea al-value="noteContent" style="display:block;width:90%;height:50px;"></textarea>
+				<button class="btn-primary btn-submit" al-click="addNote()">Ajouter la note</button>
 			</div>
 		</div>
 		<a id="downloadLink" style="display:none;"></a>

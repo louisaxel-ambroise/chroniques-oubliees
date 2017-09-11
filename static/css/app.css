@@ -342,3 +342,22 @@ select{
 	text-transform:uppercase;
 	font-size:80%;
 }
+
+/* NOTES */
+div.notes{
+	margin:10px;
+}
+#notes-modal .player-name{ height:22px; }
+#notes-modal a.btn-delete{
+	text-decoration:none;
+	font-size:13px;
+	color:#fff;
+	background:red;
+	height:20px;
+	line-height:19px !important;
+	width:20px;
+	border-radius:3px;
+	position:relative;
+	display:inline-block;
+	font-weight:bold;
+}
