@@ -35,7 +35,7 @@ function communaute($scope){
   };
 
   $scope.export = function(){
-    var dataObj = JSON.parse(JSON.stringify($scope.players));
+    var dataObj = JSON.parse(JSON.stringify({ players:$scope.players, notes:$scope.notes }));
     // TODO: delete $alite_id values?
 
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.players));
@@ -81,7 +81,15 @@ function communaute($scope){
         var reader = new FileReader();
         reader.readAsText(file, "UTF-8");
         reader.onload = function(e){ 
-          $scope.players = JSON.parse(e.target.result);
+          var loaded = JSON.parse(e.target.result);
+
+          if(loaded.players != undefined && loaded.players != null){
+            $scope.players = loaded.players;
+            $scope.notse = loaded.notes;
+          }
+          else{
+            $scope.players = loaded;
+          }
           $scope.fileName = '';
           $scope.$scan();
       };
