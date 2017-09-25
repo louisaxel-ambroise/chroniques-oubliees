@@ -35,10 +35,7 @@ function communaute($scope){
   };
 
   $scope.export = function(){
-    var dataObj = JSON.parse(JSON.stringify({ players:$scope.players, notes:$scope.notes }));
-    // TODO: delete $alite_id values?
-
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.players));
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ players:$scope.players, notes:$scope.notes }));
     var dlAnchorElem = document.getElementById('downloadLink');
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "game.json");
